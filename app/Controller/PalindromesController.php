@@ -11,7 +11,7 @@ class PalindromesController extends AppController
 	
 	public function test_strings()
 	{
-		$laStringArray = $this->split_string($_POST["text_to_test"]);
+		$laStringArray = explode("\n", $_POST["text_to_test"]);
 		
 		$liStringIndex = 0;
 		
@@ -26,20 +26,5 @@ class PalindromesController extends AppController
 		}
 		
 		$this->set("iaPalindromeArray", $laPalindromeArray);
-	}
-	
-	protected function split_string($pcString)
-	{
-		$laStringParts = array();
-		
-		$loToken = strtok($pcString, "\n");
-		
-		while($loToken !== false)
-		{
-			array_push($laStringParts, trim($loToken));
-			$loToken = strtok("\n");
-		}
-		
-		return $laStringParts;
 	}
 }

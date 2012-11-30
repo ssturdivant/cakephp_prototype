@@ -11,7 +11,7 @@ class Palindrome {
 	{	
 		if(!is_array($pcString))
 		{
-			$this->icBaseString = $pcString;
+			$this->icBaseString = trim($pcString);
 
 			$this->is_palindrome();
 			$this->is_mirrored();
@@ -31,15 +31,15 @@ class Palindrome {
 		
 		$liHalfLength = floor($liStringLength / 2);
 		
-		$lcFirstHalf = substr($this->icBaseString, 0, $liHalfLength);
+		$lcFirstHalf = trim(substr($this->icBaseString, 0, $liHalfLength));
 		
 		if(($liStringLength % 2) == 0)
 		{	
-			$lcSecondHalf = substr($this->icBaseString, $liHalfLength, $liStringLength);
+			$lcSecondHalf = trim(substr($this->icBaseString, $liHalfLength, $liStringLength));
 		}
 		else
 		{
-			$lcSecondHalf = substr($this->icBaseString, ($liHalfLength + 1), $liStringLength);
+			$lcSecondHalf = trim(substr($this->icBaseString, ($liHalfLength + 1), $liStringLength));
 		}
 		
 		$lcSecondHalf = strrev($lcSecondHalf);
@@ -50,7 +50,7 @@ class Palindrome {
 		$liCharacterIndex = 0;
 		
 		while($liCharacterIndex < $liHalfLength)
-		{	
+		{
 			$lcFirstCharacterMap = $this->ihMirrorMatches[$laFirstHalfCharacters[$liCharacterIndex]];
 			
 			if(is_null($lcFirstCharacterMap))
@@ -60,6 +60,8 @@ class Palindrome {
 			}
 			
 			$lcSecondCharacter = $laSecondHalfCharacters[$liCharacterIndex];
+
+			$liSpike = count($laSecondHalfCharacters);
 
 			if($lcSecondCharacter != $lcFirstCharacterMap)
 			{
